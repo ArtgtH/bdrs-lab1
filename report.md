@@ -17,14 +17,12 @@
 
 1. на первом уровне подбирается `primarySeed`, минимизирующий сумму квадратов размеров бакетов;
 2. для каждого бакета второго уровня строится собственная collision-free таблица;
-3. бакеты размера `1` хранятся без дополнительного раздувания;
-4. для бакетов размера `m > 1` выделяется `m^2` слотов.
+3. для бакетов размера `m > 1` выделяется `m^2` слотов.
 
 Ключевые свойства реализации:
 
 1. структура immutable после построения;
 2. lookup выполняется за одну primary и одну secondary хеш-функцию;
-3. в hot path `Get` нет аллокаций.
 
 ### LSH
 
@@ -42,8 +40,7 @@
 Ключевые свойства реализации:
 
 1. индекс поддерживает `Build` и инкрементальный `Add`;
-2. `FindDuplicates` является ускоренным query path;
-3. `FullScanDuplicates` нужен как baseline.
+2. `FullScanDuplicates` нужен как baseline.
 
 ### Extendible Hashing
 
@@ -64,13 +61,11 @@
 3. `mmapCache.write()` только обновляет mmap-region и ставит `dirty = true`, а `msync` вызывается позже в `flushDirty()'
 4. уже загруженные бакеты кэшируются в `ht.buckets`
 
-Итого: в реализации есть batching dirty-состояния и есть кэширование bucket/meta в памяти, а запись на диск вынесена в явные точки синхронизации.
-
 ## Методика измерений
 
-Все benchmark-артефакты лежат в `artifacts/benchmarks/`.
+Система: Intel® Core™ Ultra 7 255H × 16; 32GB RAM
 
-Число прогонов подбиралось отдельно для легких и тяжелых benchmark'ов:
+Все benchmark-артефакты лежат в `artifacts/benchmarks/`.
 
 1. `PerfectBuild`, `LSHBuild`, `LSHAdd`, `LSHFullScanDuplicates`: `10` прогонов
 2. `PerfectGet`, `LSHFindDuplicates`: `15` прогонов
