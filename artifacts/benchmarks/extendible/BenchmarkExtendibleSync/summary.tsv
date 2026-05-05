@@ -1,0 +1,10 @@
+benchmark	case	size	variant	metric	runs	mean	stdev	min	max
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=128	100000	limit=128	B/op	5	7075209.6	7402.940821052131	7061968.0	7078688.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=128	100000	limit=128	allocs/op	5	17287.6	1.140175425099138	17286.0	17289.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=128	100000	limit=128	ns/op	5	624097134.4	37332463.23554191	577369622.0	680311147.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=32	100000	limit=32	B/op	5	9500616.0	296456.22505860793	9365880.0	10030928.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=32	100000	limit=32	allocs/op	5	61418.2	28.358420266298335	61399.0	61468.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=32	100000	limit=32	ns/op	5	2394314097.4	57109955.780978195	2327416563.0	2460883639.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=64	100000	limit=64	B/op	5	7837836.8	164.4968084796784	7837648.0	7838080.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=64	100000	limit=64	allocs/op	5	32682.6	2.073644135332772	32680.0	32685.0
+BenchmarkExtendibleSync	BenchmarkExtendibleSync/size=100000/limit=64	100000	limit=64	ns/op	5	1224461610.6	54091724.82650041	1170206139.0	1315485652.0

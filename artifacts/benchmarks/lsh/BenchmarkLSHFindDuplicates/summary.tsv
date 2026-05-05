@@ -1,0 +1,17 @@
+benchmark	case	size	variant	metric	runs	mean	stdev	min	max
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=10000	10000	default	B/op	15	4568.0	0.0	4568.0	4568.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=10000	10000	default	allocs/op	15	13.0	0.0	13.0	13.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=10000	10000	default	ns/op	15	9478.0	5374.064968505153	2905.0	16527.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=10000	10000	default	ops/s	15	155026.53333333333	100277.51377542701	60524.0	344460.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=100000	100000	default	B/op	15	34136.0	0.0	34136.0	34136.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=100000	100000	default	allocs/op	15	16.0	0.0	16.0	16.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=100000	100000	default	ns/op	15	143619.4	29071.591559950266	100274.0	209201.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=100000	100000	default	ops/s	15	7230.933333333333	1459.50776764275	4780.0	9973.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=250000	250000	default	B/op	15	109912.0	0.0	109912.0	109912.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=250000	250000	default	allocs/op	15	19.0	0.0	19.0	19.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=250000	250000	default	ns/op	15	268051.93333333335	16833.087495706048	231283.0	297450.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=250000	250000	default	ops/s	15	3745.2	248.37218615848045	3362.0	4324.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=50000	50000	default	B/op	15	18392.0	0.0	18392.0	18392.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=50000	50000	default	allocs/op	15	15.0	0.0	15.0	15.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=50000	50000	default	ns/op	15	67760.26666666666	20683.7942100527	46609.0	110394.0
+BenchmarkLSHFindDuplicates	BenchmarkLSHFindDuplicates/size=50000	50000	default	ops/s	15	16010.4	4540.686744787149	9059.0	21456.0

@@ -1,0 +1,17 @@
+benchmark	case	size	variant	metric	runs	mean	stdev	min	max
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=10000	10000	default	B/op	10	246104.0	0.0	246104.0	246104.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=10000	10000	default	allocs/op	10	8.0	0.0	8.0	8.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=10000	10000	default	ns/op	10	1094618.0	165047.70721286078	866846.0	1290283.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=10000	10000	default	ops/s	10	934.04	149.87486780644713	775.1	1154.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=100000	100000	default	B/op	10	2400600.0	0.0	2400600.0	2400600.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=100000	100000	default	allocs/op	10	8.0	0.0	8.0	8.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=100000	100000	default	ns/op	10	6115525.5	722007.1332301134	4923003.0	6807920.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=100000	100000	default	ops/s	10	165.78	21.40185869394421	146.9	203.1
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=250000	250000	default	B/op	10	6005080.0	0.0	6005080.0	6005080.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=250000	250000	default	allocs/op	10	8.0	0.0	8.0	8.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=250000	250000	default	ns/op	10	13644190.7	1335304.5230006566	12254786.0	16116280.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=250000	250000	default	ops/s	10	73.889	6.78682784680901	62.05	81.6
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=50000	50000	default	B/op	10	1204568.0	0.0	1204568.0	1204568.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=50000	50000	default	allocs/op	10	8.0	0.0	8.0	8.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=50000	50000	default	ns/op	10	3444945.4	734186.6994045104	2441641.0	4617830.0
+BenchmarkLSHFullScanDuplicates	BenchmarkLSHFullScanDuplicates/size=50000	50000	default	ops/s	10	303.5	69.89647900844346	216.6	409.6

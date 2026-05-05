@@ -1,0 +1,17 @@
+benchmark	case	size	variant	metric	runs	mean	stdev	min	max
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=10000	10000	default	B/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=10000	10000	default	allocs/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=10000	10000	default	ns/op	15	49.35333333333333	11.541714199661445	34.82	83.21
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=10000	10000	default	ops/s	15	21141800.933333334	4234518.1024339115	12018284.0	28721550.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=100000	100000	default	B/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=100000	100000	default	allocs/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=100000	100000	default	ns/op	15	230.10666666666665	40.25547818383883	166.1	288.2
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=100000	100000	default	ops/s	15	4479100.466666667	824429.7447555463	3469460.0	6022382.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=250000	250000	default	B/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=250000	250000	default	allocs/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=250000	250000	default	ns/op	15	359.62	19.749509939670478	320.9	384.4
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=250000	250000	default	ops/s	15	2788783.933333333	157016.21868159567	2601511.0	3116418.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=50000	50000	default	B/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=50000	50000	default	allocs/op	15	0.0	0.0	0.0	0.0
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=50000	50000	default	ns/op	15	74.74199999999999	35.014795077020146	34.33	142.1
+BenchmarkPerfectGet	BenchmarkPerfectGet/size=50000	50000	default	ops/s	15	16249017.066666666	7171098.253942991	7036797.0	29132884.0
