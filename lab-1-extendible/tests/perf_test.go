@@ -43,9 +43,6 @@ func prepareBenchmarkTable(b *testing.B, path string, bucketLimit uint64, keys [
 	for i, key := range keys {
 		ht.Put(key, int64(i))
 	}
-	if err := ht.Sync(); err != nil {
-		b.Fatalf("sync prepared table: %v", err)
-	}
 	if reopen {
 		if err := ht.Close(); err != nil {
 			b.Fatalf("close prepared table: %v", err)

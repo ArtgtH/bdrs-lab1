@@ -160,18 +160,12 @@ func TestHashTableRandomizedAgainstMap(t *testing.T) {
 		}
 
 		if (i+1)%500 == 0 {
-			if err := ht.Sync(); err != nil {
-				t.Fatalf("sync: %v", err)
-			}
 			verifyHashTableState(t, ht, ref)
 			ht = reopenTable(t, ht, path)
 			verifyHashTableState(t, ht, ref)
 		}
 	}
 
-	if err := ht.Sync(); err != nil {
-		t.Fatalf("sync: %v", err)
-	}
 	verifyHashTableState(t, ht, ref)
 	ht = reopenTable(t, ht, path)
 	verifyHashTableState(t, ht, ref)
@@ -202,9 +196,6 @@ func TestHashTablePersistenceReopen(t *testing.T) {
 		}
 	}
 
-	if err := ht.Sync(); err != nil {
-		t.Fatalf("sync: %v", err)
-	}
 	verifyHashTableState(t, ht, ref)
 	ht = reopenTable(t, ht, path)
 	verifyHashTableState(t, ht, ref)
@@ -235,9 +226,6 @@ func TestHashTableShrinkActuallyHappens(t *testing.T) {
 		delete(ref, i)
 	}
 
-	if err := ht.Sync(); err != nil {
-		t.Fatalf("sync: %v", err)
-	}
 	if ht.GlobalDepth() != 1 {
 		t.Fatalf("expected global depth to shrink back to 1, got=%d", ht.GlobalDepth())
 	}

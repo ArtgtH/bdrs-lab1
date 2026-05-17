@@ -7,14 +7,21 @@ import (
 	"os"
 )
 
+const (
+	autoSyncMutationLimit  = 1024
+	autoSyncDirtyFileLimit = 256
+)
+
 type HashTable struct {
-	meta          *Meta
-	baseDir       string
-	buckets       map[uint64]*Bucket
-	dirtyBuckets  map[uint64]struct{}
-	deletedBucket map[uint64]struct{}
-	metaDirty     bool
-	cache         *mmapCache
+	meta             *Meta
+	baseDir          string
+	buckets          map[uint64]*Bucket
+	dirtyBuckets     map[uint64]struct{}
+	deletedBucket    map[uint64]struct{}
+	metaDirty        bool
+	pendingMutations int
+	err              error
+	cache            *mmapCache
 }
 
 func NewHashTable(bucketLimit uint64) *HashTable {
@@ -91,10 +98,19 @@ func (ht *HashTable) Close() error {
 }
 
 func (ht *HashTable) Sync() error {
+	if ht.err != nil {
+		return ht.err
+	}
 	if err := ht.flushDirty(); err != nil {
+		ht.err = err
 		return err
 	}
-	return ht.cache.flushDirty()
+	if err := ht.cache.flushDirty(); err != nil {
+		ht.err = err
+		return err
+	}
+	ht.pendingMutations = 0
+	return nil
 }
 
 func hashKey(key int64) uint64 {
@@ -135,6 +151,29 @@ func (ht *HashTable) markBucketDirty(bucketID uint64) {
 func (ht *HashTable) markBucketDeleted(bucketID uint64) {
 	delete(ht.dirtyBuckets, bucketID)
 	ht.deletedBucket[bucketID] = struct{}{}
+}
+
+func (ht *HashTable) recordMutation() {
+	ht.pendingMutations++
+	_ = ht.syncIfNeeded()
+}
+
+func (ht *HashTable) dirtyFileCount() int {
+	count := len(ht.dirtyBuckets) + len(ht.deletedBucket)
+	if ht.metaDirty {
+		count++
+	}
+	return count
+}
+
+func (ht *HashTable) syncIfNeeded() error {
+	if ht.err != nil {
+		return ht.err
+	}
+	if ht.pendingMutations < autoSyncMutationLimit && ht.dirtyFileCount() < autoSyncDirtyFileLimit {
+		return nil
+	}
+	return ht.Sync()
 }
 
 func (ht *HashTable) flushMeta() error {
@@ -196,6 +235,9 @@ func (ht *HashTable) newBucket(localDepth uint64) *Bucket {
 }
 
 func (ht *HashTable) Get(key int64) (int64, bool) {
+	if ht.err != nil {
+		return 0, false
+	}
 	bucket, _, _, err := ht.bucketByKey(key)
 	if err != nil || bucket == nil {
 		return 0, false
@@ -204,6 +246,9 @@ func (ht *HashTable) Get(key int64) (int64, bool) {
 }
 
 func (ht *HashTable) Delete(key int64) bool {
+	if ht.err != nil {
+		return false
+	}
 	bucket, bucketID, idx, err := ht.bucketByKey(key)
 	if err != nil || bucket == nil {
 		return false
@@ -218,10 +263,14 @@ func (ht *HashTable) Delete(key int64) bool {
 		ht.metaDirty = true
 	}
 
+	ht.recordMutation()
 	return true
 }
 
 func (ht *HashTable) Put(key int64, value int64) {
+	if ht.err != nil {
+		return
+	}
 	for {
 		bucket, bucketID, _, err := ht.bucketByKey(key)
 		if err != nil || bucket == nil {
@@ -231,12 +280,14 @@ func (ht *HashTable) Put(key int64, value int64) {
 		if _, exists := bucket.Get(key); exists {
 			bucket.Put(key, value)
 			ht.markBucketDirty(bucketID)
+			ht.recordMutation()
 			return
 		}
 
 		if !bucket.IsFull(ht.meta.BucketLimit) {
 			bucket.Put(key, value)
 			ht.markBucketDirty(bucketID)
+			ht.recordMutation()
 			return
 		}
 
